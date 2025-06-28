@@ -1,33 +1,241 @@
-
-body {
+/* بازنشانی استایل‌های پیش‌فرض */
+* {
   margin: 0;
-  font-family: sans-serif;
-  background: #fffef8;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* استایل‌های اصلی بدنه */
+body {
+  font-family: 'Vazir', sans-serif;
+  background: linear-gradient(135deg, #000159, #001f8a);
   direction: rtl;
   text-align: center;
-  color: #333;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s ease;
 }
+
+/* تم روشن */
+body.light-theme {
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  color: #000000;
+}
+
+/* هدر */
+.header {
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header h1 {
+  font-size: 24px;
+  color: #ffe0a7;
+  font-weight: 600;
+}
+
+body.light-theme .header h1 {
+  color: #000000;
+}
+
+/* دکمه‌های هدر */
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+#refresh-btn, #theme-toggle {
+  background: #007aff;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+body.light-theme #refresh-btn, body.light-theme #theme-toggle {
+  background: #007aff;
+  color: #fff;
+}
+
+#refresh-btn:hover, #theme-toggle:hover {
+  background: #005bcb;
+}
+
+/* کانتینر اصلی */
 .container {
   padding: 20px;
+  flex: 1;
 }
-h1 {
-  color: #FFA500;
-  margin-bottom: 20px;
-}
+
+/* کارت‌های قیمت */
 .card {
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  animation: fadeIn 0.5s ease-in;
 }
-.value {
+
+body.light-theme .card {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000000;
+}
+
+.card .name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+body.light-theme .card .name {
+  color: #000000;
+}
+
+.card .value {
   font-size: 20px;
   font-weight: bold;
-  color: #FF8C00;
+  color: #ffe0a7;
 }
-footer {
-  margin-top: 30px;
-  font-size: 13px;
+
+body.light-theme .card .value {
+  color: #000000;
+}
+
+.card .trend {
+  font-size: 14px;
+  color: #34c759;
+}
+
+.card .trend.down {
+  color: #ff3b30;
+}
+
+.card .bubble {
+  font-size: 14px;
   color: #aaa;
+}
+
+body.light-theme .card .bubble {
+  color: #666;
+}
+
+/* بخش سیگنال‌ها */
+.signals {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  margin: 20px;
+}
+
+body.light-theme .signals {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.signals h2 {
+  font-size: 18px;
+  color: #ffe0a7;
+  margin-bottom: 15px;
+}
+
+body.light-theme .signals h2 {
+  color: #000000;
+}
+
+.signals div {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* بخش نمودار */
+.chart-container {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  margin: 20px;
+}
+
+body.light-theme .chart-container {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.chart-container h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #ffe0a7;
+}
+
+body.light-theme .chart-container h2 {
+  color: #000000;
+}
+
+/* پیام بارگذاری */
+.loading {
+  font-size: 16px;
+  color: #aaa;
+  padding: 20px;
+}
+
+body.light-theme .loading {
+  color: #666;
+}
+
+/* فوتر */
+footer {
+  margin: 20px 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+body.light-theme footer {
+  color: #666;
+}
+
+footer a {
+  color: #007aff;
+  text-decoration: none;
+}
+
+/* انیمیشن ورود */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 20px;
+  }
+  .card {
+    padding: 15px;
+  }
+  .card .name, .card .value {
+    font-size: 16px;
+  }
+  .signals, .chart-container {
+    margin: 10px;
+  }
 }
