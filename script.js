@@ -44,7 +44,7 @@ const FLAGS = {
 };
 
 const MIN_VALID_PRICE = 1000;
-const PROXY_URL = "https://cors-anywhere.herokuapp.com/"; // پراکسی موقت برای تست
+const PROXY_URL = "https://vercel.com/shahins-projects-cc1766d6/proxy-server"; // پراکسی موقت برای تست
 
 let previousPrices = JSON.parse(localStorage.getItem("prices")) || {};
 
