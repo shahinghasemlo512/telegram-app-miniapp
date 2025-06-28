@@ -1,0 +1,113 @@
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مینی اپ چند</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      direction: rtl;
+    }
+
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      color: #222;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .value {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0088cc;
+    }
+
+    button {
+      background-color: #0088cc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0077b3;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="title">💵 دلار</div>
+    <div class="value" id="usd">در حال بارگذاری...</div>
+  </div>
+
+  <div class="card">
+    <div class="title">👑 طلا ۱۸ عیار</div>
+    <div class="value" id="gold">در حال بارگذاری...</div>
+  </div>
+
+  <div class="card">
+    <div class="title">⚜️ سکه امامی</div>
+    <div class="value" id="coin">در حال بارگذاری...</div>
+  </div>
+
+  <button onclick="sendToBot()">ارسال قیمت‌ها به ربات</button>
+
+  <footer>نسخه‌ی آزمایشی</footer>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    // مثال قیمتی اولیه (در آینده با API زنده بگیر)
+    const prices = {
+      usd: "۸۳,۹۰۰ تومان",
+      gold: "۶,۲۵۰,۰۰۰ تومان",
+      coin: "۷۲,۳۰۰,۰۰۰ تومان"
+    };
+
+    document.getElementById("usd").textContent = prices.usd;
+    document.getElementById("gold").textContent = prices.gold;
+    document.getElementById("coin").textContent = prices.coin;
+
+    function sendToBot() {
+      const message = `💵 دلار: ${prices.usd}\n👑 طلا: ${prices.gold}\n⚜️ سکه: ${prices.coin}`;
+      tg.sendData(message);
+    }
+  </script>
+</body>
+</html>
