@@ -1,31 +1,135 @@
 const CURRENCIES = {
-  USD: { tgju_url: "https://www.tgju.org/profile/price_dollar_rl", alanchand_url: "https://alanchand.com/currencies-price/usd" },
-  EUR: { tgju_url: "https://www.tgju.org/profile/price_eur", alanchand_url: "https://alanchand.com/currencies-price/eur" },
-  AED: { tgju_url: "https://www.tgju.org/profile/price_aed", alanchand_url: "https://alanchand.com/currencies-price/aed" },
-  USDT: { alanchand_url: "https://alanchand.com/crypto-price/usdt" },
-  GOLD_OUNCE: { tgju_url: "https://www.tgju.org/profile/ons", alanchand_url: "https://alanchand.com/gold-price" },
-  GOLD_24K: { tgju_url: "https://www.tgju.org/profile/geram24", alanchand_url: "https://alanchand.com/gold-price" },
-  GOLD_18K: { tgju_url: "https://www.tgju.org/profile/geram18", alanchand_url: "https://alanchand.com/gold-price" },
-  MESQAL_17K: { tgju_url: "https://www.tgju.org/profile/mesghal", alanchand_url: "https://alanchand.com/gold-price" },
-  EMAMI_COIN: { tgju_url: "https://www.tgju.org/profile/sekee", alanchand_url: "https://alanchand.com/gold-price" },
-  HALF_COIN: { tgju_url: "https://www.tgju.org/profile/nim", alanchand_url: "https://alanchand.com/gold-price" },
-  QUARTER_COIN: { tgju_url: "https://www.tgju.org/profile/rob", alanchand_url: "https://alanchand.com/gold-price" },
-  GRAM_COIN: { tgju_url: "https://www.tgju.org/profile/gerami", alanchand_url: "https://alanchand.com/gold-price" },
+    "USD": {"tgju_url": "https://www.tgju.org/profile/price_dollar_rl", "alanchand_url": "https://alanchand.com/currencies-price/usd"},
+    "EUR": {"tgju_url": "https://www.tgju.org/profile/price_eur", "alanchand_url": "https://alanchand.com/currencies-price/eur"},
+    "AED": {"tgju_url": "https://www.tgju.org/profile/price_aed", "alanchand_url": "https://alanchand.com/currencies-price/aed"},
+    "USDT": {"alanchand_url": "https://alanchand.com/crypto-price/usdt"},
+    "GOLD_OUNCE": {"tgju_url": "https://www.tgju.org/profile/ons", "alanchand_url": "https://alanchand.com/gold-price"},
+    "GOLD_24K": {"tgju_url": "https://www.tgju.org/profile/geram24", "alanchand_url": "https://alanchand.com/gold-price"},
+    "GOLD_18K": {"tgju_url": "https://www.tgju.org/profile/geram18", "alanchand_url": "https://alanchand.com/gold-price"},
+    "MESQAL_17K": {"tgju_url": "https://www.tgju.org/profile/mesghal", "alanchand_url": "https://alanchand.com/gold-price"},
+    "EMAMI_COIN": {"tgju_url": "https://www.tgju.org/profile/sekee", "alanchand_url": "https://alanchand.com/gold-price"},
+    "HALF_COIN": {"tgju_url": "https://www.tgju.org/profile/nim", "alanchand_url": "https://alanchand.com/gold-price"},
+    "QUARTER_COIN": {"tgju_url": "https://www.tgju.org/profile/rob", "alanchand_url": "https://alanchand.com/gold-price"},
+    "GRAM_COIN": {"tgju_url": "https://www.tgju.org/profile/gerami", "alanchand_url": "https://alanchand.com/gold-price"},
 };
 
 const SELECTORS = {
-  USD: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.price-buy, span.price", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  EUR: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.price-buy, span.price", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  AED: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.price-buy, span.price", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  USDT: { alanchand: { price_selector: "div.price-buy, span.usdt-price", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  GOLD_OUNCE: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})*(?:\\.\\d{1,2})?)" }, alanchand: { price_selector: "div.gold-price-ons, a[href*='usd_xau'] div.cell:nth-child(1)", pattern: "(\\d{1,3}(?:[,.]\\d{3})*(?:\\.\\d{1,2})?)" } },
-  GOLD_24K: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.gold-price-24k, a[href*='24ayar'] div.cell:nth-child(1)", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  GOLD_18K: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.gold-price-18k, a[href*='18ayar'] div.cell:nth-child(1)", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  MESQAL_17K: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.gold-price-mesghal, a[href*='abshodeh'] div.cell:nth-child(1)", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  EMAMI_COIN: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.gold-price-emami, a[href*='emami'] div.cell:nth-child(1)", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  HALF_COIN: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.gold-price-nim, a[href*='nim'] div.cell:nth-child(1)", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  QUARTER_COIN: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.gold-price-rob, a[href*='rob'] div.cell:nth-child(1)", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
-  GRAM_COIN: { tgju: { price_selector: "span[data-col='info.last_trade.PDrCotVal']", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" }, alanchand: { price_selector: "div.gold-price-sekeb, a[href*='sekeb'] div.cell", pattern: "(\\d{1,3}(?:[,.]\\d{3})+)\\s*تومان" } },
+    "USD": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.price-buy, span.price",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "EUR": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.price-buy, span.price",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "AED": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.price-buy, span.price",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "USDT": {
+        "alanchand": {
+            "price_selector": "div.price-buy, span.usdt-price",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "GOLD_OUNCE": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})*(?:\.\d{1,2})?)'
+        },
+        "alanchand": {
+            "price_selector": "div.gold-price-ons, a[href*='usd_xau'] div.cell:nth-child(1)",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})*(?:\.\d{1,2})?)'
+        }
+    },
+    "GOLD_24K": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.gold-price-24k, a[href*='24ayar'] div.cell:nth-child(1)",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "GOLD_18K": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.gold-price-18k, a[href*='18ayar'] div.cell:nth-child(1)",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "MESQAL_17K": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.gold-price-mesghal, a[href*='abshodeh'] div.cell:nth-child(1)",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "EMAMI_COIN": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.gold-price-emami, a[href*='emami'] div.cell:nth-child(1)",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "HALF_COIN": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.gold-price-nim, a[href*='nim'] div.cell:nth-child(1)",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "QUARTER_COIN": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.gold-price-rob, a[href*='rob'] div.cell:nth-child(1)",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    },
+    "GRAM_COIN": {
+        "tgju": {
+            "price_selector": "span[data-col='info.last_trade.PDrCotVal']",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        },
+        "alanchand": {
+            "price_selector": "div.gold-price-sekeb, a[href*='sekeb'] div.cell",
+            "pattern": r'(\d{1,3}(?:[,.]\d{3})+)\s*تومان'
+        }
+    }
 };
 
 const NAMES = {
