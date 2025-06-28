@@ -44,7 +44,7 @@ const FLAGS = {
 };
 
 const MIN_VALID_PRICE = 1000;
-const PROXY_URL = "http://localhost:3000/proxy?url="; // آدرس سرور پراکسی
+const PROXY_URL = "https://cors-anywhere.herokuapp.com/"; // پراکسی موقت برای تست
 
 let previousPrices = JSON.parse(localStorage.getItem("prices")) || {};
 
@@ -56,7 +56,7 @@ async function fetchPrice(currency) {
     const source = url.includes("tgju") ? "tgju" : "alanchand";
     const { price_selector, pattern } = config[source];
     try {
-      const proxyUrl = `${PROXY_URL}${encodeURIComponent(url)}`;
+      const proxyUrl = `${PROXY_URL}${url}`;
       const response = await fetch(proxyUrl, {
         headers: {
           "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
@@ -161,7 +161,7 @@ async function fetchPrices() {
   }
 
   if (Object.values(prices).every(v => v === null)) {
-    container.innerHTML = "<div class='loading'>خطا در دریافت قیمت‌ها. لطفاً بعداً تلاش کنید.</div>";
+    container.innerHTML = "<div class='loading'>خطا در دریافت قیمت‌ها. لطفاً سرور پراکسی یا اتصال اینترنت را بررسی کنید.</div>";
     return;
   }
 
@@ -242,18 +242,6 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
 if (localStorage.getItem("theme") === "light") {
   document.body.classList.add("light-theme");
   document.getElementById("theme-toggle").textContent = "🌙";
-}
-
-// کشیدن برای به‌روزرسانی
-try {
-  PullToRefresh.init({
-    mainElement: ".container",
-    onRefresh() {
-      fetchPrices();
-    },
-  });
-} catch (error) {
-  console.error("خطا در مقداردهی اولیه PullToRefresh:", error);
 }
 
 // به‌روزرسانی خودکار هر ۵ دقیقه
