@@ -44,7 +44,8 @@ const FLAGS = {
 };
 
 const MIN_VALID_PRICE = 1000;
-const PROXY_URL = "https://vercel.com/shahins-projects-cc1766d6/proxy-server"; // پراکسی موقت برای تست
+// برای تست موقت، از پراکسی عمومی استفاده می‌کنیم. این را با URL Vercel جایگزین کنید.
+const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
 
 let previousPrices = JSON.parse(localStorage.getItem("prices")) || {};
 
