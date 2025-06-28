@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مینی اپ چند</title>
+  <title>اکوکیان VIP</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,9 +16,16 @@
 
     body {
       font-family: 'Vazirmatn', sans-serif;
-      background-color: #f4f4f4;
+      background-color: #FFFDF9;
       padding: 20px;
       color: #222;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto 20px auto;
+      display: block;
     }
 
     .card {
@@ -35,22 +43,22 @@
 
     .title {
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 10px;
     }
 
     .value {
       font-size: 22px;
       font-weight: bold;
-      color: #0088cc;
+      color: #FFA500;
     }
 
     button {
-      background-color: #0088cc;
+      background: linear-gradient(to right, #FFA500, #FF8C00);
       color: white;
       border: none;
       padding: 12px 20px;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 16px;
       cursor: pointer;
       width: 100%;
@@ -58,18 +66,20 @@
     }
 
     button:hover {
-      background-color: #0077b3;
+      opacity: 0.9;
     }
 
     footer {
       text-align: center;
       margin-top: 30px;
-      font-size: 14px;
-      color: #888;
+      font-size: 13px;
+      color: #999;
     }
   </style>
 </head>
 <body>
+  <img class="logo" src="https://yourdomain.com/logo.jpg" alt="ecokian logo" />
+
   <div class="card">
     <div class="title">💵 دلار</div>
     <div class="value" id="usd">در حال بارگذاری...</div>
@@ -85,15 +95,14 @@
     <div class="value" id="coin">در حال بارگذاری...</div>
   </div>
 
-  <button onclick="sendToBot()">ارسال قیمت‌ها به ربات</button>
+  <button onclick="sendToBot()">ارسال به ربات</button>
 
-  <footer>نسخه‌ی آزمایشی</footer>
+  <footer>اکوکیان VIP - نسخه آزمایشی</footer>
 
   <script>
     const tg = window.Telegram.WebApp;
     tg.expand();
 
-    // مثال قیمتی اولیه (در آینده با API زنده بگیر)
     const prices = {
       usd: "۸۳,۹۰۰ تومان",
       gold: "۶,۲۵۰,۰۰۰ تومان",
